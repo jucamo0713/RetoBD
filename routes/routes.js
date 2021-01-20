@@ -2,19 +2,9 @@ const { Router } = require('express');
 const mysql = require('./../DB/database');
 const router = Router();
 
-router.get('/numero-sesiones-estudiantes', async (req, res) => {
-    const [rows] = await cnn_mysql.promise().query(`SELECT a.documento, CONCAT(a.nombres, ' ', a.apellidos) nombreActor, ta.perfil AS perfilActor, COUNT(ig.id) AS numero_sesiones
-    FROM actores AS a
-    INNER JOIN tipo_actores AS ta ON ta.id = a.tipo_actor_id
-    JOIN integrantes_grupos AS ig ON ig.estudiante_id = a.id
-    JOIN asistencias_sesiones ase ON ase.integrante_grupo_id = ig.id
-    WHERE ta.id = 1
-    GROUP BY ig.id`)
-    return res.json(rows)
-});
 //gets
 router.get('/', async (req, res) => {
-    return res.json([]);
+    return res.json(mysql);
 });
 router.get('/cont_marcas', async (req, res) => {
     const [rows] = await mysql.promise().query('SELECT COUNT(*) AS conteo_marca FROM tipo_marca');
