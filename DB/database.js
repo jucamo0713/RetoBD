@@ -9,5 +9,5 @@ const conection_mysql = mysql.createPool({
     port : process.env.DB_PORT
 });
 console.log('Conexion con DB establecida');
-
+console.log(conection_mysql);
 module.exports = conection_mysql;

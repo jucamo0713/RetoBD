@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     return res.json({"mensaje":"mensaje"});
 });
 router.get('/cont_marcas', async (req, res) => {
-    const rows = await mysql.promise().query('SELECT COUNT(*) AS conteo_marca FROM tipo_marca');
+    const [rows] = await mysql.promise().query('SELECT COUNT(*) AS conteo_marca FROM tipo_marca');
     return res.json(rows);
 });
 router.get('/cont_lineas', async (req, res) => {
