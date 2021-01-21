@@ -95,8 +95,7 @@ FROM
     vehiculos
 JOIN tipo_linea ON vehiculos.id_linea = tipo_linea.id_linea
 JOIN tipo_marca ON tipo_linea.id_marca = tipo_marca.id_marca
-WHERE
-    vehiculos.modelo <> NULL AND vehiculos.fecha_ven_contratodo <> NULL AND tipo_marca.desc_marca <> NULL AND tipo_linea.desc_linea <> NULL`);
+WHERE NOT(vehiculos.modelo is NULL OR tipo_marca.desc_marca is NULL OR tipo_linea.desc_linea is NULL OR vehiculos.fecha_ven_contratodo is NULL)`);
     return res.json(rows);
 });
 //posts
